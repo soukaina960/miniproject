@@ -1,0 +1,126 @@
+/* Conteneur principal de la mise en page */
+.layout-container {
+  display: flex; /* Flexbox pour disposer la navigation et le contenu côte à côte */
+  flex-direction: row;
+  min-height: 100vh; /* Assure que le contenu occupe toute la hauteur de la fenêtre */
+  background-color: #f9f9f9;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Barre de navigation à gauche */
+.navigation-bar {
+  width: 250px; /* Largeur fixe de la navigation */
+  background-color: #2c3e50; /* Couleur de fond sombre */
+  color: white; /* Couleur du texte */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.navigation-bar ul {
+  list-style-type: none; /* Supprime les puces */
+  padding: 0;
+  margin: 0;
+}
+
+.navigation-bar li {
+  margin: 15px 0; /* Espacement entre les liens */
+}
+
+.navigation-bar a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+  display: block;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.navigation-bar a:hover {
+  background-color: #34495e;
+}
+
+/* Contenu principal */
+.content-section {
+  flex: 1; /* Le contenu occupe l'espace restant */
+  padding: 20px;
+  background-color: #ffffff;
+  border-left: 1px solid #ddd; /* Séparation avec la navigation */
+}
+
+/* Titres */
+h1, h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* Boutons */
+button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Table pour les demandes (Admin) */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td {
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+  .layout-container {
+    flex-direction: column; /* Navigation au-dessus du contenu sur petits écrans */
+  }
+
+  .navigation-bar {
+    width: 200px; /* Navigation pleine largeur */
+    border-right: none;
+  }
+
+  .content-section {
+    border-left: none;
+    width: 400px;
+    margin-top: -200px;
+
+  }
+}
+.msg{
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+}
+footer{
+  background-color: black;
+  margin-top: 400px;
+}

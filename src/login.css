@@ -1,0 +1,84 @@
+/* Conteneur principal */
+.LOGIN {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Hauteur de la fenêtre */
+    background-color: #f0f8ff; /* Bleu clair */
+    font-family: Arial, sans-serif;
+    color: #333; /* Couleur de texte par défaut */
+  }
+  
+  /* Titre */
+  .LOGIN h2 {
+    font-size: 24px;
+    color: #1e90ff; /* Bleu vif */
+    margin-bottom: 20px;
+  }
+  
+  /* Formulaire */
+  .LOGIN form {
+    width: 100%;
+    max-width: 400px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Champs d'entrée */
+  .LOGIN input[type="text"],
+  .LOGIN input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  /* Focus sur les champs */
+  .LOGIN input[type="text"]:focus,
+  .LOGIN input[type="password"]:focus {
+    outline: none;
+    border-color: #1e90ff; /* Bleu vif */
+    box-shadow: 0 0 4px rgba(30, 144, 255, 0.5); /* Effet lumineux */
+  }
+  
+  /* Bouton de soumission */
+  .LOGIN button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #1e90ff; /* Bleu vif */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .LOGIN button:hover {
+    background-color: #1c86ee; /* Bleu légèrement plus foncé */
+  }
+  
+  /* Message d'erreur */
+  .LOGIN p {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  
+  /* Responsivité */
+  @media (max-width: 768px) {
+    .LOGIN form {
+      padding: 15px;
+    }
+  
+    .LOGIN h2 {
+      font-size: 20px;
+    }
+  }
+  

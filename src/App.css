@@ -1,0 +1,42 @@
+header {
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Profil */
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile img {
+  margin-right: 15px;
+  border: 2px solid #ffffff;
+}
+
+.profile p {
+  margin: 0;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+/* Bouton Se Déconnecter */
+button {
+  background-color: #1520b6;
+  color:white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  width: 200px;
+}
+
+button:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+}
