@@ -19,7 +19,8 @@ function CreateAccount() {
     email: '',
   });
 
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState('');
 
   const validatePassword = (password) => {
     const regex = {
@@ -47,28 +48,27 @@ function CreateAccount() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const validationErrors = [];
+    const validationErrors = {};
 
     // Validation des champs obligatoires
     for (const key in formData) {
       if (!formData[key] && key !== 'admin') {
-        validationErrors.push(`Le champ "${key}" est requis.`);
+        validationErrors[key] = `Le champ "${key}" est requis.`;
       }
     }
 
     // Validation du mot de passe
     if (!validatePassword(formData.MotDePasse)) {
-      validationErrors.push(
-        'Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, un caractère spécial et avoir au moins 8 caractères.'
-      );
+      validationErrors.MotDePasse =
+        'Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, un caractère spécial et avoir au moins 8 caractères.';
     }
 
     // Validation de confirmation du mot de passe
     if (formData.MotDePasse !== formData.confirmPassword) {
-      validationErrors.push('Les mots de passe ne correspondent pas.');
+      validationErrors.confirmPassword = 'Les mots de passe ne correspondent pas.';
     }
 
-    if (validationErrors.length > 0) {
+    if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
@@ -79,19 +79,21 @@ function CreateAccount() {
 
       await axios.post('https://670ed5b73e7151861655eaa3.mockapi.io/Stagiaire', newUser);
 
-      alert('Compte créé avec succès ! Redirection vers la page de connexion...');
-      navigate('/login'); // Rediriger vers la page Login
+      setSuccessMessage('Compte créé avec succès ! Redirection vers la page de connexion...');
+      setTimeout(() => {
+        navigate('/login'); // Rediriger vers la page Login
+      }, 3000);
     } catch (error) {
       console.error('Erreur lors de la création du compte :', error);
-      setErrors(['Une erreur est survenue lors de la création du compte.']);
+      setErrors({ general: 'Une erreur est survenue lors de la création du compte.' });
     }
   };
 
   return (
     <div className="container mt-5">
       <h2>Créer un compte</h2>
+      {successMessage && <p className="text-success">{successMessage}</p>}
       <form onSubmit={handleSubmit}>
-        {/* Champs du formulaire */}
         {[ 
           { label: 'Nom', name: 'nom', type: 'text' },
           { label: 'Prénom', name: 'prenom', type: 'text' },
@@ -108,15 +110,15 @@ function CreateAccount() {
             <label className="form-label">{field.label}</label>
             <input
               type={field.type}
-              className="form-control"
+              className={`form-control ${errors[field.name] ? 'is-invalid' : ''}`}
               name={field.name}
               value={formData[field.name]}
               onChange={handleChange}
             />
+            {errors[field.name] && <div className="invalid-feedback">{errors[field.name]}</div>}
           </div>
         ))}
 
-        {/* Checkbox Admin */}
         <div className="mb-3 form-check">
           <input
             type="checkbox"
@@ -128,16 +130,8 @@ function CreateAccount() {
           <label className="form-check-label">Admin</label>
         </div>
 
-        {/* Affichage des erreurs */}
-        {errors.length > 0 && (
-          <ul className="text-danger">
-            {errors.map((error, index) => (
-              <li key={index}>{error}</li>
-            ))}
-          </ul>
-        )}
+        {errors.general && <p className="text-danger">{errors.general}</p>}
 
-        {/* Bouton de soumission */}
         <button type="submit" className="btn btn-primary">
           Créer un compte
         </button>
