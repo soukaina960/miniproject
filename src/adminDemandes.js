@@ -16,6 +16,7 @@ const AdminDemandes = () => {
       .get('https://670ed5b73e7151861655eaa3.mockapi.io/Stagiaire')
       .then((response) => {
         dispatch(setDemandes(response.data)); // Stocker les demandes dans Redux
+        
       })
       .catch((error) => {
         console.error('Erreur lors du chargement des demandes:', error);
